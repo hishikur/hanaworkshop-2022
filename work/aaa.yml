@@ -19,7 +19,7 @@
       owner: root
       group: root
       mode: 0644
-      backup: yes
+      force: yes
 
   - name: Specifying a path directly
     fetch:
