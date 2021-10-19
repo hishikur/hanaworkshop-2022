@@ -32,6 +32,7 @@
       path: /etc/hosts
       insertafter: EOF
       marker: "# {mark} ANSIBLE Fish-shell basic setup."
+      backup: yes
       block: "{{item}}"
     with_file:
       - /tmp/hosts.txt
