@@ -21,12 +21,17 @@
       mode: 0644
       backup: yes
 
+  - name: Specifying a path directly
+    fetch:
+      src: /tmp/hosts.txt
+      dest: /tmp/hosts.txt
+      flat: yes
+
   - name: Insert to /etc/hosts
     blockinfile: 
-      path: /etc/hosts   # 展開対象のファイルパス
-      create: yes        # ファイルが存在しない場合は作成(格納フォルダが存在しない場合はフォルダも作成)
-      insertafter: EOF   # ファイルの末尾に追加（EOFを文字列にすると、その文字列の直下に追加されます）
-      marker: "# {mark} ANSIBLE Fish-shell basic setup." # 追加部分を示すマーカー
-      block: "{{item}}"  # 展開する内容（ここではwith_fileで読み込んだファイル内容）
+      path: /etc/hosts
+      insertafter: EOF
+      marker: "# {mark} ANSIBLE Fish-shell basic setup."
+      block: "{{item}}"
     with_file:
       - /tmp/hosts.txt
