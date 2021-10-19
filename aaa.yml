@@ -1,0 +1,22 @@
+---
+- name: Transfer and execute a script.
+  hosts: hanas
+
+  tasks:
+  - name: Set node information
+    set_fact:
+      _nodes: "{{ _nodes | default([]) + [{'hostname': hostvars[item].ansible_hostname, 'address': hostvars[item].ansible_eth0.ipv4.address}] }}"
+    run_once: yes
+    with_items: "{{ ansible_play_hosts }}"
+    when:
+      - hostvars[item].ansible_eth0 is defined
+
+  - name: Distribute hosts file
+    become: yes
+    template:
+      src: hosts.j2
+      dest: /tmp/hosts
+      owner: root
+      group: root
+      mode: 0644
+      backup: yes
