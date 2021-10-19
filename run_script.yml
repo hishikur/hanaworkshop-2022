@@ -3,12 +3,6 @@
   hosts: hanas
 
   tasks:
-  - name: Transfer the script
-    copy: src=/home/ec2-user/hanaworkshop-2021/pkg_fix.sh dest=/home/ec2-user mode=0777
-
-  - name: Execute the script
-    command: sh /home/ec2-user/pkg_fix.sh
-
   - name: Set node information
     set_fact:
       _nodes: "{{ _nodes | default([]) + [{'hostname': hostvars[item].ansible_hostname, 'address': hostvars[item].ansible_eth0.ipv4.address}] }}"
@@ -42,3 +36,10 @@
       block: "{{item}}"
     with_file:
       - /tmp/hosts.txt
+
+  - name: Transfer the script
+    copy: src=/home/ec2-user/hanaworkshop-2021/pkg_fix.sh dest=/home/ec2-user mode=0777
+
+  - name: Execute the script
+    command: sh /home/ec2-user/pkg_fix.sh
+
