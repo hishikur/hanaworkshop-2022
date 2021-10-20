@@ -24,7 +24,7 @@
   - name: Copy hosts.txt to local
     fetch:
       src: /tmp/hosts.txt
-      dest: /tmp/hosts.txt
+      dest: /tmp/hosts.{{ node.hostname }}.txt
       flat: yes
 
   - name: Insert to /etc/hosts on HANA node
