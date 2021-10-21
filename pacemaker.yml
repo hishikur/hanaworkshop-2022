@@ -8,8 +8,8 @@
     sap_hana_ha_pacemaker_hacluster_password: "Mysecretpassword"
     sap_hana_ha_pacemaker_node1_fqdn: hana1.xxxx.internal
     sap_hana_ha_pacemaker_node2_fqdn: hana2.xxxx.internal
-    sap_hana_ha_pacemaker_node1_ip: 192.168.0.112
-    sap_hana_ha_pacemaker_node2_ip: 192.168.0.55
+    sap_hana_ha_pacemaker_node1_ip: 192.168.0.xx
+    sap_hana_ha_pacemaker_node2_ip: 192.168.0.xx
 
   roles:
     - redhat_sap.sap_hana_ha_pacemaker
