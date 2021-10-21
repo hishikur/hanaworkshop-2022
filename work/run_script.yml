@@ -13,15 +13,18 @@
 
   - name: Create additional hosts entries to /tmp/hosts.txt
     become: yes
-    lineinfile:
-      path: /tmp/hosts.{{ ansible_play_hosts }}txt
-      line: '{{ node.address }} {{ node.hostname }}.{{ ansible_domain }} {{ ansible_nodename }} {{ node.hostname }}'
+    template:
+      src: work/hosts.j2
+      dest: /tmp/hosts.txt
+      owner: root
+      group: root
+      mode: 0644
       force: yes
 
   - name: Copy hosts.txt to local
     fetch:
       src: /tmp/hosts.txt
-      dest: /tmp/hosts.{{ ansbile_play_hosts }}.txt
+      dest: /tmp/hosts.{{ node.hostname }}.txt
       flat: yes
 
   - name: Insert to /etc/hosts on HANA node
