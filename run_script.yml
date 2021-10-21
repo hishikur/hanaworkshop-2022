@@ -1,20 +1,20 @@
 ---
+- name: Get FQDN
+  hosts: 127.0.0.1
+
+  tasks:
+  - name: Set valiable
+    command: uname -n
+    register : fqdn
+
 - name: Transfer and execute a script.
   hosts: hanas
 
   tasks:
-  - name: Set node information
-    set_fact:
-      _nodes: "{{ _nodes | default([]) + [{'hostname': hostvars[item].ansible_hostname, 'address': hostvars[item].ansible_eth0.ipv4.address}] }}"
-    run_once: yes
-    with_items: "{{ ansible_play_hosts }}"
-    when:
-      - hostvars[item].ansible_eth0 is defined
-
   - name: Create additional hosts entries to /tmp/hosts.txt
     lineinfile:
       path: /tmp/hosts.{{ ansible_hostname }}.txt
-      line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}.{{ ansible_domain }} {{ ansible_nodename }} {{ ansible_hostname }}"
+      line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}.{{ ansible_domain }} {{ ansible_hostname }}.{{ fqdn }}.internal {{ ansible_hostname }}"
       create: yes
 
   - name: Copy hosts.txt to local
