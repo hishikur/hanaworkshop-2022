@@ -20,15 +20,24 @@
       flat: yes
 
   - name: Insert to /etc/hosts on HANA node
-    blockinfile:
+    lineinfile:
       path: /etc/hosts
-      insertafter: EOF
-      marker: "# ANSIBLE Fish-shell basic setup."
+      line: "{{ item }}"
       backup: yes
-      block: "{{ item }}"
     with_file:
       - /tmp/hosts.hana1.txt
       - /tmp/hosts.hana2.txt
+
+#  - name: Insert to /etc/hosts on HANA node
+#    blockinfile:
+#      path: /etc/hosts
+#      insertafter: EOF
+#      marker: "# ANSIBLE Fish-shell basic setup."
+#      backup: yes
+#      block: "{{ item }}"
+#    with_file:
+#      - /tmp/hosts.hana1.txt
+#      - /tmp/hosts.hana2.txt
 
   - name: Transfer the script
     copy: src=/home/ec2-user/hanaworkshop-2021/pkg_fix.sh dest=/home/ec2-user mode=0777
