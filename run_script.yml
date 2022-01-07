@@ -3,44 +3,8 @@
   hosts: hanas
 
   tasks:
-  - name: Set FQDN
-    shell: grep search /etc/resolv.conf | cut -f 3 -d " "
-    register : fqdn
-
-  - name: Create additional hosts entries to /tmp/hosts.txt
-    lineinfile:
-      path: /tmp/hosts.{{ ansible_hostname }}.txt
-      line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}.{{ ansible_domain }} {{ ansible_hostname }}.{{ fqdn.stdout }} {{ ansible_hostname }}"
-      create: yes
-
-  - name: Copy hosts.txt to local
-    fetch:
-      src: /tmp/hosts.{{ ansible_hostname }}.txt
-      dest: /tmp/hosts.{{ ansible_hostname }}.txt
-      flat: yes
-
-  - name: Insert to /etc/hosts on HANA node
-    lineinfile:
-      path: /etc/hosts
-      line: "{{ item }}"
-      backup: yes
-    with_file:
-      - /tmp/hosts.hana1.txt
-      - /tmp/hosts.hana2.txt
-
-#  - name: Insert to /etc/hosts on HANA node
-#    blockinfile:
-#      path: /etc/hosts
-#      insertafter: EOF
-#      marker: "# ANSIBLE Fish-shell basic setup."
-#      backup: yes
-#      block: "{{ item }}"
-#    with_file:
-#      - /tmp/hosts.hana1.txt
-#      - /tmp/hosts.hana2.txt
-
   - name: Transfer the script
-    copy: src=/home/ec2-user/hanaworkshop-2021/pkg_fix.sh dest=/home/ec2-user mode=0777
+    copy: src=/home/ec2-user/hanaworkshop-2022/pkg_fix.sh dest=/home/ec2-user mode=0777
 
   - name: Execute the script
     command: sh /home/ec2-user/pkg_fix.sh
