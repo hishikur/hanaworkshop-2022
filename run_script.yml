@@ -4,7 +4,7 @@
 
   tasks:
   - name: Transfer the script
-    copy: src=/home/ec2-user/hanaworkshop-2022/pkg_fix.sh dest=/home/ec2-user mode=0777
+    copy: src=/home/cloud-user/hanaworkshop-2022/pkg_fix.sh dest=/home/cloud-user mode=0777
 
   - name: Execute the script
-    command: sh /home/ec2-user/pkg_fix.sh
+    command: sh /home/cloud-user/pkg_fix.sh
