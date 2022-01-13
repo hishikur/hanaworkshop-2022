@@ -15,10 +15,6 @@
     shell: nslookup hana-{{ fqdn.stdout }}2 |grep 192|cut -f 2 -d " "
     register : hana2ip
 
-  - name: debug
-    debug:
-      msg: "{{ hana1ip }}"
-
   - name: Prepare hana1 in host_vars
     copy:
       src: /home/cloud-user/hanaworkshop-2022/temp/hana-xxxxx1
