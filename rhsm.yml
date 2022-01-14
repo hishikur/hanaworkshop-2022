@@ -3,4 +3,3 @@
 
   roles:
     - redhat_sap.sap_rhsm
-storage_prep.yml

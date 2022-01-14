@@ -14,3 +14,4 @@
     state: present
     disable_gpg_check: yes
   when: sap_hostagent_rpm_local_path is defined
+

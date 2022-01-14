@@ -5,3 +5,4 @@
     - name: print std
       debug:
         msg: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+
