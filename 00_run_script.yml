@@ -27,13 +27,13 @@
 
   - name: Prepare hsr.yml
     template:
-      src: /home/cloud-user/hanaworkshop-2022/temp/hsr.yml
-      dest: /home/cloud-user/hanaworkshop-2022/hsr.yml
+      src: /home/cloud-user/hanaworkshop-2022/temp/07_hsr.yml
+      dest: /home/cloud-user/hanaworkshop-2022/07_hsr.yml
 
   - name: Prepare pacemaker.yml
     template:
-      src: /home/cloud-user/hanaworkshop-2022/temp/pacemaker.yml
-      dest: /home/cloud-user/hanaworkshop-2022/pacemaker.yml
+      src: /home/cloud-user/hanaworkshop-2022/temp/08_pacemaker.yml
+      dest: /home/cloud-user/hanaworkshop-2022/08_pacemaker.yml
 
 - name: Transfer and execute a script.
   hosts: hanas
