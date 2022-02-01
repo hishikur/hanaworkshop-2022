@@ -33,7 +33,7 @@
       insertafter: EOF
       marker: "# {mark} ANSIBLE Fish-shell basic setup."
       backup: yes
-      block: "{{item}}"
+      block: "{{ item }}"
     with_file:
       - /tmp/hosts.txt
 
