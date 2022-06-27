@@ -9,6 +9,6 @@
     sap_hana_preconfigure_update: yes
     
   roles:
-    - role: sap_general_preconfigure
+    - role: sap_preconfigure
     - role: sap_hana_preconfigure
 
