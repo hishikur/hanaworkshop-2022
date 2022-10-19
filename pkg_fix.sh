@@ -1,4 +1,7 @@
 #!/bin/bash
+
+#sudo mv /etc/rhsm/rhsm.conf /etc/rhsm/rhsm.conf.sat-backup
+#sudo mv /etc/rhsm/rhsm.conf.kat-backup /etc/rhsm/rhsm.conf
 #sudo subscription-manager remove --all
 #sudo subscription-manager unregister
 #sudo subscription-manager clean
